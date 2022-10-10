@@ -11,6 +11,18 @@ use OpenTelemetry\API\Trace\TracerProviderInterface;
 use OpenTelemetry\Context\Propagation\TextMapPropagatorInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Instrumentation Interface is created to standardize 3rd party instrumentations (eg AWS SDK over in -contrib repo).
+ * This interface along with InstrumentationTrait is meant as a base for instrumentations for theOpenTelemetry API.
+ 
+ * A user of the instrumentation and API/SDK would use the call:
+
+ *  $instrumentation = new Instrumentation;
+ *  $instrumentation->activate() (Implemented in InstrumentationTrait)
+ *  where Instrumentation is the class that implements the interface.
+
+ *  to activate and use the instrumentation with the API/SDK.
+ */
 interface InstrumentationInterface
 {
     public function getName(): string;
